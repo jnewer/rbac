@@ -1,0 +1,45 @@
+<include file="Public/layout" />
+<block name="body">
+
+
+<section class="Hui-article-box">
+    <nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> <span class="c-999 en">&gt;</span><span class="c-666">用户管理</span> <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+    <div class="Hui-article">
+        <article class="cl pd-20">
+            <div class="cl pd-5 bg-1 bk-gray">
+            <a class="btn btn-primary radius" href="add.html"><i class="Hui-iconfont">&#xe600;</i> 添加用户</a> </span> <span class="r">共有数据：<strong>{$list|count}</strong> 条</span> </div>
+            <div class="mt-10">
+                <table class="table table-border table-bordered table-bg">
+                    <thead>
+                        <tr>
+                            <th scope="col" colspan="9">员工列表</th>
+                        </tr>
+                        <tr class="text-c">
+                            <th width="40">ID</th>
+                            <th width="150">登录名</th>
+                            <th>角色</th>
+                            <th width="100">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="list" id="vo">
+                        <tr class="text-c">
+                            <td>{$vo.id}</td>
+                            <td>{$vo.username}</td>
+                            <td>{$vo.role_name}</td>
+                            <td class="td-manage">
+                                <a title="编辑" href="{:U('/Home/User/edit/id/'.$vo['id'])}"><i class="Hui-iconfont">&#xe6df;</i></a>
+                                <a title="删除" href="{:U('/Home/User/delete/id/'.$vo['id'])}"><i class="Hui-iconfont">&#xe6e2;</i></a>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+        <footer class="footer">
+            {$footerTips}
+        </footer>
+    </div>
+</section>
+</block>

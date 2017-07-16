@@ -1,0 +1,73 @@
+<include file="Public/layout"/>
+<block name="body">
+    <section class="Hui-article-box">
+        <nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> <span
+                class="c-999 en">&gt;</span><span class="c-666">角色添加</span> <a class="btn btn-success radius r"
+                                                                               style="line-height:1.6em;margin-top:3px"
+                                                                               href="javascript:location.replace(location.href);"
+                                                                               title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
+        </nav>
+        <div class="Hui-article">
+            <article class="cl pd-20">
+                <form action="{:U('/Home/Role/addHandler')}" method="post" class="form form-horizontal"
+                      id="form-admin-role-add">
+                    <div class="row cl">
+                        <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>角色名称：</label>
+                        <div class="formControls col-xs-8 col-sm-9">
+                            <input type="text" class="input-text" value="" placeholder="" id="role_name"
+                                   name="role_name" datatype="*4-16" nullmsg="用户账户不能为空">
+                        </div>
+                    </div>
+                    <div class="row cl">
+                        <label class="form-label col-xs-4 col-sm-3">节点权限：</label>
+                        <div class="formControls col-xs-8 col-sm-9">
+                            <volist name="nodeTree" id="vo">
+                                <dl class="permission-list">
+                                    <dt>
+                                        <label>
+                                            <input type="checkbox" value="" name="user-Character-0"
+                                                   id="user-Character-0">
+                                            {$key}
+                                        </label>
+                                    </dt>
+                                    <dd>
+                                        <dl class="cl permission-list2">
+                                            <volist name="vo" id="v">
+                                                <dt>
+                                                    <label class="">
+                                                        <input
+                                                        <if condition="in_array($v['id'],$my_node_list)">
+                                                            checked="checked"
+                                                        </if>
+                                                        type="checkbox" value="{$v.id}" name="node_id[]">{$v.name}
+                                                    </label>
+                                                </dt>
+                                            </volist>
+                                        </dl>
+                                    </dd>
+                                </dl>
+                            </volist>
+                        </div>
+                    </div>
+                    <div class="row cl">
+                        <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                            <button type="submit" class="btn btn-success radius"><i class="icon-ok"></i> 确定</button>
+                        </div>
+                    </div>
+                </form>
+            </article>
+            <footer class="footer">
+                {$footerTips}
+            </footer>
+        </div>
+    </section>
+</block>
+<block name="scripts">
+    <script type="text/javascript">
+        $(function () {
+            $(".permission-list dt input:checkbox").click(function () {
+                $(this).closest("dl").find("dd input:checkbox").prop("checked", $(this).prop("checked"));
+            });
+        });
+    </script>
+</block>
